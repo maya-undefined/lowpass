@@ -161,6 +161,7 @@ int main(int argc, char **argv) {
 
   // this will hold the h_in in th ekernels
   float* d_time = nullptr;
+
   // the fft-ized data in complex form
   cufftComplex* d_freq = nullptr;
   CUDA_CHECK(cudaMalloc(&d_time, sizeof(float) * N));
@@ -173,6 +174,7 @@ int main(int argc, char **argv) {
 
   size_t workSizeF = 0;
   // make a 1D R2C plan with single batch (idist/odist implied for 1 batch)
+  // we go from real to complex plane because they are better at these frequncy calculations
   // define plan: 1d, length n, real->complex, batch=1
   CUFFT_CHECK_LABELED("cufftMakePlan1d(R2C)", cufftMakePlan1d(pfwd, N, CUFFT_R2C, 1, &workSizeF));
   printf("Forward plan work area: %zu bytes\n", workSizeF);
