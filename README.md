@@ -153,16 +153,6 @@ You can zero‑pad the time signal to a larger `N` before FFT to interpolate the
 
 ---
 
-## Easy extensions
-
-- **CLI args:** already supported → `--sr`, `--fc`, `--alpha`, `--N`.
-- **Windowing:** apply a Hann window pre-FFT to reduce spectral leakage.
-- **Notch filter:** zero bins around known interference (e.g., 60 Hz ± bw).
-- **Batches:** use `cufftPlanMany` and a 2D low-pass kernel (bin × signal) to process 100s of signals.
-- **STFT/spectrogram:** frame the signal (e.g., 2048-sample windows with 75% overlap), run batched R2C, plot magnitude.
-
----
-
 **License:** MIT (or your choice)
 
 **Tested on:** CUDA 12.x, RTX 4080 Laptop (sm_89)
